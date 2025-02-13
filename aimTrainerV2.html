@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+	content=
+	"width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f5cac3, #f7ede2);
+            font-family: 'Lobster', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            color: #ff477e;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        #valentineImage {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: relative;
+        }
+        button {
+			font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #yesButton {
+            background-color: #06d6a0;
+        }
+        #yesButton:hover {
+            transform: scale(1.1);
+        }
+        #noButton {
+            background-color: #ef476f;
+            position: relative;
+        }
+        @keyframes hearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: #ff477e;
+            font-size: 20px;
+            opacity: 0.6;
+            animation: hearts 4s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my valentine?</h1>
+        <img id="valentineImage" src="https://pbs.twimg.com/media/Fyk7XMnaEAI3PsB.jpg" alt="Valentine's Day Image">
+        <div class="button-container">
+            <button id="yesButton">Yes</button>
+            <button id="noButton">no.</button>
+        </div>
+		<audio id="audioElement" autoplay loop>
+			<source src="https://drive.google.com/uc?export=download&id=1LtdrT_4dE-Pqp8zAfqxrIrzaO_hTk29h" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+    </div>
+
+    <script>
+		let yesClicks = 0;
+		let maxClicks = 3;
+		let titles = [
+			"Wait Really? You mean it? 🥰",
+			"Are you sure? 🥺",
+			"Best decision ever! 💖",
+		];
+		var yesSources = [
+			"https://pbs.twimg.com/media/GOWveAhW0AA2UJZ.jpg",
+			"https://preview.redd.it/uiqeq99h5kl61.png?auto=webp&s=8948fbd4ef1b49896e345585b8ec2b8992b71ca1",
+			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfoqlhttNPF0W3eJduC7TTtkmx8dBugB_tbw&s"
+		]
+		function changeTitle() {
+			let h1 = document.querySelector("h1");
+			document.title = titles[yesClicks];
+			h1.textContent = titles[yesClicks];
+			valentineImage.src = yesSources[yesClicks];
+		}
+        document.getElementById("yesButton").addEventListener("click", function() {
+			let noButton = document.getElementById("noButton");
+			if (noButton) {
+				noButton.remove();
+			}
+			if (yesClicks >= maxClicks){
+				window.location.href = "https://drive.google.com/file/d/1wNgGLN5nJVZ_mtHlqrOlXvH-G26LQkXz/view?usp=sharing";
+			} else {
+				changeTitle()
+				yesClicks++
+			}
+        });
+
+        var noButton = document.getElementById("noButton");
+        var yesButton = document.getElementById("yesButton");
+        var valentineImage = document.getElementById("valentineImage");
+
+        var imageSources = [
+            "https://pbs.twimg.com/media/Fyk7XMnaEAI3PsB.jpg",
+            "https://media.tenor.com/BP70qe8X0J8AAAAe/crycat-crying-cat.png",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9e71v7IfFLLS_1CfY2it3an-6XH1uROjTfU5c88AwRL8aRkqAYDmoFrm9gpbUqwNameo&usqp=CAU",
+            "https://i.pinimg.com/736x/cb/d8/3b/cbd83b534a315e809a9da2b8cd3ac3bf.jpg",
+			"https://i.pinimg.com/474x/20/82/0f/20820fd73c946d3e1d2e6efe23e1b2f3.jpg",
+			"https://i.redd.it/4wel1xmq3wq21.jpg",
+			"https://pbs.twimg.com/media/EAmr-PAWsAEoiWR.jpg",
+			"https://media.tenor.com/Y3j6d3RoSEoAAAAM/sad-cat-content-aware-scale.gif",
+			"https://ih1.redbubble.net/image.1216827586.7776/fposter,small,wall_texture,product,750x1000.jpg",
+			"https://external-preview.redd.it/lv9Hn8d0TOR9hYon0WUflTDGWOZ7DRWFP8pq6zbKlJM.jpg?auto=webp&s=47c1f2cd917ed7ba2aab10fc60a8da6832f852ae",
+			"https://media.istockphoto.com/id/1092586980/photo/cute-little-white-british-kitten-crying.jpg?s=612x612&w=0&k=20&c=imtBbMlOJy7sWfhsYC0SRGQN0YziKW7KHxenA4DxZ4M=",
+			
+        ];
+
+        noButton.addEventListener("click", function() {
+			var maxScreenWidth = 500;
+			var maxScreenHeight = 250;
+
+			// Add optional padding (e.g., 20px) to keep the button away from the edges
+			var padding = 20;
+
+			// Get the button's width and height
+			var buttonWidth = noButton.offsetWidth;
+			var buttonHeight = noButton.offsetHeight;
+
+			// Calculate the maximum X and Y positions within the 1920x1080 area
+			var maxX = maxScreenWidth - buttonWidth - padding;
+			var maxY = maxScreenHeight - buttonHeight - padding;
+
+			// Generate a random position within the confined area
+			var x = Math.random() * maxX;
+			var y = Math.random() * maxY;
+
+			// Ensure the button stays within the bounds of the confined area
+			x = Math.max(padding, Math.min(x, maxX)); // Clamp X between padding and maxX
+			y = Math.max(padding, Math.min(y, maxY)); // Clamp Y between padding and maxY
+
+			// Set the button's new position
+			noButton.style.position = "absolute";
+			noButton.style.left = `${x}px`;
+			noButton.style.top = `${y}px`;
+
+			// Decrease the size of "no." button
+			noButton.style.width = `${noButton.offsetWidth - 2}px`;
+			noButton.style.height = `${noButton.offsetHeight - 1}px`;
+			
+			// Increase the size of the "Yes" button
+			yesButton.style.width = `${yesButton.offsetWidth + 30}px`;
+			yesButton.style.height = `${yesButton.offsetHeight + 15}px`;
+
+			// Change the image
+			valentineImage.src = imageSources[Math.floor(Math.random() * imageSources.length)];
+			
+			// Play the audio again when "No" is clicked
+            var audio = document.getElementById("audioElement");
+            audio.play();
+        });
+
+        function createHearts() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        setInterval(createHearts, 300);
+    </script>
+</body>
+</html>
